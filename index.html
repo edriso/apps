@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Apps &amp;amp; Demos</title>
+    <title>Apps &amp; Demos</title>
     <meta name="description" content="A collection of small, focused web apps and demos." />
     <meta name="theme-color" content="#13141a" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta property="og:title" content="Apps &amp;amp; Demos" />
+    <meta property="og:title" content="Apps &amp; Demos" />
     <meta property="og:description" content="A collection of small, focused web apps and demos." />
     <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,7 +40,7 @@
       header { text-align: center; margin-bottom: clamp(40px, 7vw, 64px); }
       .eyebrow {
         font-family: var(--ui); font-size: 12.5px; font-weight: 700;
-        letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); margin-bottom: 18px;
+        letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px;
       }
       h1 {
         font-family: var(--serif); font-weight: 500; font-size: clamp(32px, 6.5vw, 52px);
@@ -70,19 +70,18 @@
       a.card.big { padding: 24px; gap: 10px; }
       a.card:hover {
         transform: translateY(-3px);
-        border-color: color-mix(in oklab, var(--c, #8a93d8) 55%, var(--line));
+        border-color: color-mix(in oklab, var(--c, var(--accent)) 55%, var(--line));
         background: var(--surface2);
       }
-      a.card:focus-visible { outline: 2px solid var(--c, #8a93d8); outline-offset: 3px; }
+      a.card:focus-visible { outline: 2px solid var(--c, var(--accent)); outline-offset: 3px; }
       .ct { display: flex; align-items: center; gap: 11px; }
       .dot {
         width: 30px; height: 30px; border-radius: 9px; flex-shrink: 0; display: grid;
-        place-items: center; font-size: 16px; background: color-mix(in oklab, var(--c, #8a93d8) 20%, transparent);
+        place-items: center; font-size: 16px; background: color-mix(in oklab, var(--c, var(--accent)) 20%, transparent);
       }
       a.card.big .dot { width: 40px; height: 40px; border-radius: 12px; font-size: 21px; }
       .name { font-family: var(--serif); font-weight: 600; font-size: 18px; color: var(--ink); letter-spacing: -0.01em; }
       a.card.big .name { font-size: 21px; }
-      .meta { margin-left: auto; font-size: 12px; color: var(--faint); font-weight: 600; }
       .chip {
         margin-left: auto; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
         color: var(--faint); border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px;
@@ -94,6 +93,7 @@
       footer a:hover { color: var(--ink); }
       @media (prefers-reduced-motion: reduce) { a.card { transition: none; } }
     </style>
+    <style>:root { --accent: #e8795a; }</style>
   </head>
   <body>
     <div class="wrap">
@@ -127,25 +127,13 @@
       <div class="group">
         <div class="group-h"><h2>Fun &amp; games</h2><span>made to play with</span></div>
         <div class="grid">
-        <a class="card" style="--c:#b4502a" href="https://edriso.github.io/doomswing/" target="_blank" rel="noopener">
-          <div class="ct"><span class="dot" style="color:#b4502a">🚢</span><span class="name">Doomswing</span></div>
-          <div class="desc">A swing boat ride that wears you down, the same way endless scrolling does.</div>
-        </a>
         <a class="card" style="--c:#f6a35c" href="https://edriso.github.io/meme-generator/" target="_blank" rel="noopener">
           <div class="ct"><span class="dot" style="color:#f6a35c">🖼️</span><span class="name">Meme Generator</span></div>
           <div class="desc">Add your own top and bottom text to random meme templates from the Imgflip API.</div>
         </a>
-        <a class="card" style="--c:#6f8ae0" href="https://edriso.github.io/number-ninjas/" target="_blank" rel="noopener">
-          <div class="ct"><span class="dot" style="color:#6f8ae0">🥷</span><span class="name">Number Ninjas</span></div>
-          <div class="desc">Playful math quizzes for kids, full of sounds, stars, and celebrations. EN/عربي.</div>
-        </a>
-        <a class="card" style="--c:#58e08c" href="https://edriso.github.io/name-it/" target="_blank" rel="noopener">
-          <div class="ct"><span class="dot" style="color:#58e08c">🔤</span><span class="name">Name It</span></div>
-          <div class="desc">A quick English vocabulary quiz: see the picture, name the thing.</div>
-        </a>
-        <a class="card" style="--c:#9a8fc0" href="https://edriso.github.io/type-down/" target="_blank" rel="noopener">
-          <div class="ct"><span class="dot" style="color:#9a8fc0">⌨️</span><span class="name">Type-Down</span></div>
-          <div class="desc">Keyboard-first Markdown typing practice to build speed and muscle memory.</div>
+        <a class="card" style="--c:#b4502a" href="https://edriso.github.io/doomswing/" target="_blank" rel="noopener">
+          <div class="ct"><span class="dot" style="color:#b4502a">🚢</span><span class="name">Doomswing</span></div>
+          <div class="desc">A swing boat ride that wears you down, the same way endless scrolling does.</div>
         </a>
         </div>
       </div>
