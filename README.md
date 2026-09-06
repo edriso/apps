@@ -1,10 +1,12 @@
-# Tiny Apps
+# Apps
 
 The home for a family of tiny, single-purpose apps. Each app does one thing well, keeps its data on the device, and is designed to feel calm and easy to use.
 
 ## The collection
 
-Apps are grouped by theme: focus, calm, habits, sleep, health, family, faith, and learning. Open the [live collection](https://edriso.github.io/tiny-apps/) to browse them.
+Apps are grouped by theme: focus, calm, habits, sleep, health, family, faith, and learning. Open the [live collection](https://edriso.github.io/apps/) to browse them.
+
+Previously published as Tiny Apps. The [old collection address](https://edriso.github.io/tiny-apps/) redirects here. For experiments and learning projects, see [Demo Apps](https://edriso.github.io/demo-apps/).
 
 ## Editing
 
