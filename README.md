@@ -1,37 +1,24 @@
 # Tiny Apps
 
-The home for a family of tiny, single-purpose apps. Each one does one
-thing well and quietly fixes a single modern friction, gently and without
-shame. Minimal by design: pick one and open it.
-
-This repo is just the **landing page**. Every app is its own standalone project
-that runs on its own, keeps everything on your device, and works offline.
+The home for a family of tiny, single-purpose apps. Each app does one thing well, keeps its data on the device, and is designed to feel calm and easy to use.
 
 ## The collection
 
-The apps are sorted into simple themes. Faith comes first, then the rest run
-roughly in the order you are likely to reach for them: habits, focus, calm, body,
-evening, family, and learning. The page itself is the source of truth, so open
-the live site (or `index.html`) to see the full, up-to-date list.
+Apps are grouped by theme: focus, calm, habits, sleep, health, family, faith, and learning. Open the [live collection](https://edriso.github.io/tiny-apps/) to browse them.
 
 ## Editing
 
-It is a single static `index.html` with no build step. All the cards live in the
-`APPS` object in the inline script, grouped by category. Each entry is
-`[name, liveURL, icon, description, accent]`.
+This is a single static `index.html` with no build step. The cards are defined in the inline `APPS` object, grouped by category. Each entry contains a name, live URL, icon, description, and accent color:
 
-To add an app, drop a new entry into the right group. To add a whole new group,
-add a key to `APPS` and a matching `<div class="grid" id="g-yourkey">` in the
-page. To point a card at its live site, change its `liveURL`.
+```js
+['App name', 'https://example.com/', '◉', 'A short description.', '#8a93d8']
+```
 
-Section order comes from the order of the `<div class="group">` blocks in the
-markup, not from the key order in `APPS` — move the block to move the section.
+Add an entry to an existing group, or add a new group key and matching `.grid` element in the page. Keep descriptions short and make sure every URL points to the app’s live site.
 
 ## Deploy
 
-A static site served straight from the repo root. There is no build step,
-nothing to install, and no config needed. It works on any static host, such as
-GitHub Pages, Netlify, or Vercel.
+The repository is a static GitHub Pages site. Push changes to `main`; GitHub builds and publishes the repository root automatically. There is no package installation or build command.
 
 ## License
 
