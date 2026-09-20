@@ -345,310 +345,351 @@
     </div>
 
     <script>
-      // [name, liveURL, icon, description, accent]
+      // { n: name, u: liveURL, i: icon, en: English description, ar: Arabic description, c: accent }
       const APPS = {
         focus: [
-          [
-            'Lock In',
-            'https://edriso.github.io/lock-in/',
-            '🔒',
-            'Put the phone down and lock in. You make a two-minute promise, and a focus charge slowly drains if you wander off.',
-            '#58e08c',
-          ],
-          [
-            'Single-Task',
-            'https://edriso.github.io/single-task/',
-            '◉',
-            'Pick the one thing you are doing right now, and watch everything else quietly fade out of view.',
-            '#d8c8a0',
-          ],
-          [
-            'Zola',
-            'https://edriso.github.io/zola/',
-            '🦒',
-            'A friendly giraffe sits and works right beside you, so studying feels a little less lonely.',
-            '#ecb24c',
-          ],
-          [
-            'Linger',
-            'https://edriso.github.io/linger/',
-            '📖',
-            'Slowly win back your attention for deep reading, one unbroken stretch at a time.',
-            '#b4502a',
-          ],
+          {
+            n: 'Lock In',
+            u: 'https://edriso.github.io/lock-in/',
+            i: '🔒',
+            en: 'Put the phone down and lock in. You make a two-minute promise, and a focus charge slowly drains if you wander off.',
+            ar: 'اترك هاتفك جانبًا وتفرّغ للعمل. تقطع وعدًا لمدة دقيقتين، وشحنة التركيز تنفد تدريجيًا إن شردت عنه.',
+            c: '#58e08c',
+          },
+          {
+            n: 'Single-Task',
+            u: 'https://edriso.github.io/single-task/',
+            i: '◉',
+            en: 'Pick the one thing you are doing right now, and watch everything else quietly fade out of view.',
+            ar: 'اختر الشيء الوحيد الذي تفعله الآن، وشاهد كل ما عداه يتلاشى بهدوء من أمامك.',
+            c: '#d8c8a0',
+          },
+          {
+            n: 'Zola',
+            u: 'https://edriso.github.io/zola/',
+            i: '🦒',
+            en: 'A friendly giraffe sits and works right beside you, so studying feels a little less lonely.',
+            ar: 'زرافة ودودة تجلس وتعمل بجانبك، فتشعر أن المذاكرة أقل وحدة.',
+            c: '#ecb24c',
+          },
+          {
+            n: 'Linger',
+            u: 'https://edriso.github.io/linger/',
+            i: '📖',
+            en: 'Slowly win back your attention for deep reading, one unbroken stretch at a time.',
+            ar: 'استرجع انتباهك تدريجيًا للقراءة العميقة، فترة متواصلة واحدة في كل مرة.',
+            c: '#b4502a',
+          },
         ],
         calm: [
-          [
-            'Brain Dump',
-            'https://edriso.github.io/brain-dump/',
-            '🧠',
-            'Empty a too-full head onto the page in two minutes, then sort each thought into today, not today, or let it go.',
-            '#c08a5a',
-          ],
-          [
-            'Cairn',
-            'https://edriso.github.io/cairn/',
-            '🪨',
-            'Stack one stone at a time as you focus, breathe, and reset. The pause button is always there when you need it.',
-            '#7c8bf5',
-          ],
-          [
-            'Worry Window',
-            'https://edriso.github.io/worry-window/',
-            '🪟',
-            'Park each worry as it shows up, then face them all together in one scheduled ten-minute window.',
-            '#9a8fc0',
-          ],
-          [
-            'Grow & Let Go',
-            'https://edriso.github.io/grow-and-let-go/',
-            '🌱',
-            'Write down a memory that still weighs on you, find the lesson inside it, then watch it gently burn away.',
-            '#74b98a',
-          ],
-          [
-            'Unclench',
-            'https://edriso.github.io/unclench/',
-            '🌀',
-            'Soft little check-ins through the day that remind you to drop your shoulders and unclench your jaw.',
-            '#7fa0a8',
-          ],
+          {
+            n: 'Brain Dump',
+            u: 'https://edriso.github.io/brain-dump/',
+            i: '🧠',
+            en: 'Empty a too-full head onto the page in two minutes, then sort each thought into today, not today, or let it go.',
+            ar: 'أفرغ رأسك المزدحم على الصفحة في دقيقتين، ثم رتّب كل فكرة: اليوم، ليس اليوم، أو دعها تذهب.',
+            c: '#c08a5a',
+          },
+          {
+            n: 'Cairn',
+            u: 'https://edriso.github.io/cairn/',
+            i: '🪨',
+            en: 'Stack one stone at a time as you focus, breathe, and reset. The pause button is always there when you need it.',
+            ar: 'كوّم حجرًا واحدًا في كل مرة وأنت تركّز وتتنفّس وتعيد ضبط نفسك. زر الإيقاف المؤقت موجود دائمًا متى احتجته.',
+            c: '#7c8bf5',
+          },
+          {
+            n: 'Worry Window',
+            u: 'https://edriso.github.io/worry-window/',
+            i: '🪟',
+            en: 'Park each worry as it shows up, then face them all together in one scheduled ten-minute window.',
+            ar: 'ضع كل قلق جانبًا حين يظهر، ثم واجهها جميعًا معًا في نافذة واحدة مدتها عشر دقائق تحددها بنفسك.',
+            c: '#9a8fc0',
+          },
+          {
+            n: 'Grow & Let Go',
+            u: 'https://edriso.github.io/grow-and-let-go/',
+            i: '🌱',
+            en: 'Write down a memory that still weighs on you, find the lesson inside it, then watch it gently burn away.',
+            ar: 'اكتب ذكرى ما زالت تثقل عليك، اكتشف الدرس بداخلها، ثم شاهدها تحترق برفق وتذهب.',
+            c: '#74b98a',
+          },
+          {
+            n: 'Unclench',
+            u: 'https://edriso.github.io/unclench/',
+            i: '🌀',
+            en: 'Soft little check-ins through the day that remind you to drop your shoulders and unclench your jaw.',
+            ar: 'تذكيرات لطيفة وصغيرة على مدار اليوم تُذكّرك بإرخاء كتفيك وفك إطباق فكّك.',
+            c: '#7fa0a8',
+          },
         ],
         evening: [
-          [
-            'Wind Down',
-            'https://edriso.github.io/wind-down/',
-            '🌙',
-            'A reverse alarm that walks you gently toward sleep as the screen slowly dims around you.',
-            '#8a8fc4',
-          ],
-          [
-            'One Last Thing',
-            'https://edriso.github.io/one-last-thing/',
-            '🕯️',
-            'A three-minute ritual to close out your day, so you drift off instead of doomscrolling in bed.',
-            '#c98a5c',
-          ],
-          [
-            'Rise',
-            'https://edriso.github.io/rise/',
-            '🌅',
-            'A gentle voice and a slow sunrise that coax you up and off the couch in the morning.',
-            '#f6a35c',
-          ],
+          {
+            n: 'Wind Down',
+            u: 'https://edriso.github.io/wind-down/',
+            i: '🌙',
+            en: 'A reverse alarm that walks you gently toward sleep as the screen slowly dims around you.',
+            ar: 'منبّه عكسي يقودك برفق نحو النوم بينما تخفت الشاشة تدريجيًا من حولك.',
+            c: '#8a8fc4',
+          },
+          {
+            n: 'One Last Thing',
+            u: 'https://edriso.github.io/one-last-thing/',
+            i: '🕯️',
+            en: 'A three-minute ritual to close out your day, so you drift off instead of doomscrolling in bed.',
+            ar: 'طقس صغير مدته ثلاث دقائق لختم يومك، فتغفو بدلًا من التمرير بلا نهاية في السرير.',
+            c: '#c98a5c',
+          },
+          {
+            n: 'Rise',
+            u: 'https://edriso.github.io/rise/',
+            i: '🌅',
+            en: 'A gentle voice and a slow sunrise that coax you up and off the couch in the morning.',
+            ar: 'صوت هادئ وشروق شمس بطيء يساعدانك على النهوض ومغادرة الأريكة في الصباح.',
+            c: '#f6a35c',
+          },
         ],
         body: [
-          [
-            'Why Movement Matters · الحركة',
-            'https://edriso.github.io/why-sport-matters/',
-            '🏃',
-            'Why moving your body matters, in plain words — the benefits of walking and exercise, how much you need at every age, and little tools to get you moving today. EN/عربي.',
-            '#10b981',
-          ],
-          [
-            'Water + Up',
-            'https://edriso.github.io/water-up/',
-            '💧',
-            'One little nudge, two quick wins: a glass of water and thirty seconds back on your feet.',
-            '#3fa6c8',
-          ],
-          [
-            'Good Body',
-            'https://edriso.github.io/goodbody/',
-            '🧍',
-            'Back care for desk workers, with movement breaks, simple stretches, and a six-week program to follow.',
-            '#5fbf9b',
-          ],
-          [
-            'Saleem · سليم',
-            'https://edriso.github.io/saleem/',
-            '🍲',
-            'Eat well the Egyptian way, sizing portions with your own hand around real, everyday dishes. EN/عربي.',
-            '#3fb27f',
-          ],
-          [
-            'Bitewise · لُقمة',
-            'https://edriso.github.io/bitewise/',
-            '🥗',
-            'Learn what is really in your food — calories, protein, carbs, fat, and more — in plain words, with a searchable food library and simple health calculators. EN/عربي.',
-            '#15a05a',
-          ],
+          {
+            n: 'Why Movement Matters · الحركة',
+            u: 'https://edriso.github.io/why-sport-matters/',
+            i: '🏃',
+            en: 'Why moving your body matters, in plain words — the benefits of walking and exercise, how much you need at every age, and little tools to get you moving today. EN/عربي.',
+            ar: 'لماذا تهم حركة الجسد، بكلمات بسيطة: فوائد المشي والرياضة، والقدر الذي تحتاجه في كل عمر، وأدوات صغيرة تساعدك على الحركة اليوم.',
+            c: '#10b981',
+          },
+          {
+            n: 'Water + Up',
+            u: 'https://edriso.github.io/water-up/',
+            i: '💧',
+            en: 'One little nudge, two quick wins: a glass of water and thirty seconds back on your feet.',
+            ar: 'دفعة صغيرة واحدة، وفائدتان سريعتان: كوب ماء وثلاثون ثانية تقف فيها على قدميك.',
+            c: '#3fa6c8',
+          },
+          {
+            n: 'Good Body',
+            u: 'https://edriso.github.io/goodbody/',
+            i: '🧍',
+            en: 'Back care for desk workers, with movement breaks, simple stretches, and a six-week program to follow.',
+            ar: 'عناية بالظهر لأصحاب العمل المكتبي، مع فواصل حركة وتمارين إطالة بسيطة، وبرنامج مدته ستة أسابيع تتبعه.',
+            c: '#5fbf9b',
+          },
+          {
+            n: 'Saleem · سليم',
+            u: 'https://edriso.github.io/saleem/',
+            i: '🍲',
+            en: 'Eat well the Egyptian way, sizing portions with your own hand around real, everyday dishes. EN/عربي.',
+            ar: 'كُل جيدًا بالطريقة المصرية، وحدّد أحجام حصصك بيدك حول أطباق حقيقية من حياتنا اليومية.',
+            c: '#3fb27f',
+          },
+          {
+            n: 'Bitewise · لُقمة',
+            u: 'https://edriso.github.io/bitewise/',
+            i: '🥗',
+            en: 'Learn what is really in your food — calories, protein, carbs, fat, and more — in plain words, with a searchable food library and simple health calculators. EN/عربي.',
+            ar: 'تعرّف على ما يحتويه طعامك فعلًا: السعرات والبروتين والكربوهيدرات والدهون وأكثر، بكلمات بسيطة، مع مكتبة طعام قابلة للبحث وحاسبات صحية سهلة.',
+            c: '#15a05a',
+          },
         ],
         family: [
-          [
-            'Here',
-            'https://edriso.github.io/here/',
-            '💛',
-            'Five minutes of being fully present, built around the proven ritual of letting your child lead the play.',
-            '#e0795a',
-          ],
-          [
-            'Play With Me',
-            'https://edriso.github.io/play-with-me/',
-            '🪁',
-            'Too tired to think of something? Tap once and get one easy thing the two of you can do together right now.',
-            '#5b9e74',
-          ],
-          [
-            'I Forgot to Say Sorry',
-            'https://edriso.github.io/i-forgot-to-say-sorry/',
-            '🙏',
-            'Make a little apology card with draggable stickers, then send it to someone who has been waiting to hear it.',
-            '#d98a9e',
-          ],
+          {
+            n: 'Here',
+            u: 'https://edriso.github.io/here/',
+            i: '💛',
+            en: 'Five minutes of being fully present, built around the proven ritual of letting your child lead the play.',
+            ar: 'خمس دقائق من الحضور الكامل، مبنية على طقس مُجرَّب: أن تترك طفلك يقود اللعب.',
+            c: '#e0795a',
+          },
+          {
+            n: 'Play With Me',
+            u: 'https://edriso.github.io/play-with-me/',
+            i: '🪁',
+            en: 'Too tired to think of something? Tap once and get one easy thing the two of you can do together right now.',
+            ar: 'متعب جدًا لتفكر في شيء؟ اضغط مرة واحدة واحصل على فكرة بسيطة تفعلانها معًا الآن.',
+            c: '#5b9e74',
+          },
+          {
+            n: 'I Forgot to Say Sorry',
+            u: 'https://edriso.github.io/i-forgot-to-say-sorry/',
+            i: '🙏',
+            en: 'Make a little apology card with draggable stickers, then send it to someone who has been waiting to hear it.',
+            ar: 'اصنع بطاقة اعتذار صغيرة بملصقات يمكن سحبها، ثم أرسلها إلى من كان ينتظر سماعها.',
+            c: '#d98a9e',
+          },
         ],
         faith: [
-          [
-            'Maeen · مَعين',
-            'https://edriso.github.io/maeen/',
-            '📿',
-            'Sourced adhkar, one to a screen: morning and evening, after prayer, and before sleep. Tap to count, and it moves you on when the number is done. عربي.',
-            '#6f9b6a',
-          ],
-          [
-            'رَتِّل · Rattle',
-            'https://edriso.github.io/rattle/',
-            '📖',
-            'A quiet, Arabic-first Quran memorization companion: choose a surah, listen, recite, and keep your progress on your device.',
-            '#c9a961',
-          ],
-          [
-            'Munajaa · مناجاة',
-            'https://edriso.github.io/munajaa/',
-            '🤲',
-            'A quiet daily space to keep track of your prayers, dhikr, and good deeds. The name means whispering to God. EN/عربي.',
-            '#6db4a8',
-          ],
-          [
-            'Tawbah · توبة',
-            'https://edriso.github.io/tawbah/',
-            '🏔️',
-            'Sit with istighfar for five, ten, fifteen, or thirty minutes. A mountain recedes as the time passes, and a spoken reminder can prompt you at a chosen interval. The name means repentance. عربي.',
-            '#4f8f9a',
-          ],
-          [
-            'True Muslim · مسلم بحق',
-            'https://edriso.github.io/true-muslim/',
-            '🌿',
-            'Twenty-six short lessons on Islamic character. Each gives the meaning, a verse and a hadith with its source, something to try today, and a boundary worth keeping. عربي.',
-            '#2f8a63',
-          ],
-          [
-            'Hakeem · حكيم',
-            'https://edriso.github.io/hakeem/',
-            '🧭',
-            'A practical Muslim guide to wiser living in a distracted world: eighteen sourced lessons, a small reading list, and daily steps to reclaim attention, learn what matters, and act with care. عربي.',
-            '#7fa78d',
-          ],
-          [
-            'Learn Tajweed · تعلَّم التجويد',
-            'https://edriso.github.io/learn-tajweed/',
-            '📜',
-            "A practical guide to reciting the Qur'an properly: thirty-four lessons in eleven units, ordered from easiest to hardest, with audio examples and a short quiz after each one. عربي.",
-            '#c9a961',
-          ],
-          [
-            'Why Islam? · لماذا الإسلام؟',
-            'https://edriso.github.io/why-islam/',
-            '🌙',
-            "A bilingual guide from question to certainty: the case for the Creator, for revelation, and for the Prophet ﷺ, argued with reason first and verified sources.",
-            '#294e96',
-          ],
-          [
-            'For You or Against You · لك أم عليك',
-            'https://edriso.github.io/for-you-or-against-you/',
-            '🛡️',
-            'A quiet pause before a sin: read a verified verse or hadith, choose a practical alternative, and make this moment a witness for you, not against you. عربي.',
-            '#237e7f',
-          ],
-          [
-            'Grateful Heart',
-            'https://edriso.github.io/grateful-heart/',
-            '💚',
-            "Jot down what you are grateful for each day. Entries quietly fade after a week, so the list always feels fresh. EN/عربي.",
-            '#7fc095',
-          ],
+          {
+            n: 'Maeen · مَعين',
+            u: 'https://edriso.github.io/maeen/',
+            i: '📿',
+            en: 'Sourced adhkar, one to a screen: morning and evening, after prayer, and before sleep. Tap to count, and it moves you on when the number is done. عربي.',
+            ar: 'أذكار موثقة، ذكر واحد في كل شاشة: الصباح والمساء، وبعد الصلاة، وقبل النوم. اضغط لتُحصي، وينتقل بك تلقائيًا عند اكتمال العدد.',
+            c: '#6f9b6a',
+          },
+          {
+            n: 'رَتِّل · Rattle',
+            u: 'https://edriso.github.io/rattle/',
+            i: '📖',
+            en: 'A quiet, Arabic-first Quran memorization companion: choose a surah, listen, recite, and keep your progress on your device.',
+            ar: 'رفيق هادئ لحفظ القرآن باللغة العربية أولًا: اختر سورة، استمع، رتّل، واحتفظ بتقدّمك على جهازك.',
+            c: '#c9a961',
+          },
+          {
+            n: 'Munajaa · مناجاة',
+            u: 'https://edriso.github.io/munajaa/',
+            i: '🤲',
+            en: 'A quiet daily space to keep track of your prayers, dhikr, and good deeds. The name means whispering to God. EN/عربي.',
+            ar: 'مساحة يومية هادئة لتتبع صلواتك وأذكارك وأعمالك الصالحة. الاسم يعني المناجاة: التحدث الهادئ إلى الله.',
+            c: '#6db4a8',
+          },
+          {
+            n: 'Tawbah · توبة',
+            u: 'https://edriso.github.io/tawbah/',
+            i: '🏔️',
+            en: 'Sit with istighfar for five, ten, fifteen, or thirty minutes. A mountain recedes as the time passes, and a spoken reminder can prompt you at a chosen interval. The name means repentance. عربي.',
+            ar: 'اجلس مع الاستغفار خمسًا أو عشرًا أو خمس عشرة أو ثلاثين دقيقة. جبل يتراجع مع مرور الوقت، ويمكن لتذكير صوتي أن يُنبّهك على فترات تختارها. الاسم يعني التوبة.',
+            c: '#4f8f9a',
+          },
+          {
+            n: 'True Muslim · مسلم بحق',
+            u: 'https://edriso.github.io/true-muslim/',
+            i: '🌿',
+            en: 'Twenty-six short lessons on Islamic character. Each gives the meaning, a verse and a hadith with its source, something to try today, and a boundary worth keeping. عربي.',
+            ar: 'ستة وعشرون درسًا قصيرًا في الأخلاق الإسلامية. كل درس يقدّم المعنى، وآية وحديثًا بمصدره، وشيئًا تجربه اليوم، وحدًّا يستحق الالتزام به.',
+            c: '#2f8a63',
+          },
+          {
+            n: 'Hakeem · حكيم',
+            u: 'https://edriso.github.io/hakeem/',
+            i: '🧭',
+            en: 'A practical Muslim guide to wiser living in a distracted world: eighteen sourced lessons, a small reading list, and daily steps to reclaim attention, learn what matters, and act with care. عربي.',
+            ar: 'دليل عملي للمسلم نحو حياة أكثر حكمة في عالم مشتّت: ثمانية عشر درسًا موثقًا، وقائمة قراءة صغيرة، وخطوات يومية لاستعادة الانتباه وتعلّم ما يهم والتصرف بعناية.',
+            c: '#7fa78d',
+          },
+          {
+            n: 'Learn Tajweed · تعلَّم التجويد',
+            u: 'https://edriso.github.io/learn-tajweed/',
+            i: '📜',
+            en: "A practical guide to reciting the Qur'an properly: thirty-four lessons in eleven units, ordered from easiest to hardest, with audio examples and a short quiz after each one. عربي.",
+            ar: 'دليل عملي لتلاوة القرآن بشكل صحيح: أربعة وثلاثون درسًا في إحدى عشرة وحدة، مرتبة من الأسهل إلى الأصعب، مع أمثلة صوتية واختبار قصير بعد كل درس.',
+            c: '#c9a961',
+          },
+          {
+            n: 'Why Islam? · لماذا الإسلام؟',
+            u: 'https://edriso.github.io/why-islam/',
+            i: '🌙',
+            en: 'A bilingual guide from question to certainty: the case for the Creator, for revelation, and for the Prophet ﷺ, argued with reason first and verified sources.',
+            ar: 'دليل ثنائي اللغة من السؤال إلى اليقين: الحجة على وجود الخالق، وعلى الوحي، وعلى نبوة الرسول ﷺ، بالعقل أولًا ثم بمصادر موثقة.',
+            c: '#294e96',
+          },
+          {
+            n: 'For You or Against You · لك أم عليك',
+            u: 'https://edriso.github.io/for-you-or-against-you/',
+            i: '🛡️',
+            en: 'A quiet pause before a sin: read a verified verse or hadith, choose a practical alternative, and make this moment a witness for you, not against you. عربي.',
+            ar: 'وقفة هادئة قبل الذنب: اقرأ آية أو حديثًا موثقًا، اختر بديلًا عمليًا، واجعل هذه اللحظة شاهدة لك لا عليك.',
+            c: '#237e7f',
+          },
+          {
+            n: 'Grateful Heart',
+            u: 'https://edriso.github.io/grateful-heart/',
+            i: '💚',
+            en: 'Jot down what you are grateful for each day. Entries quietly fade after a week, so the list always feels fresh. EN/عربي.',
+            ar: 'دوّن ما تشكر عليه كل يوم. تتلاشى المدخلات بهدوء بعد أسبوع، فتبقى القائمة جديدة دائمًا.',
+            c: '#7fc095',
+          },
         ],
         habit: [
-          [
-            'Rethink · أعِد التفكير',
-            'https://edriso.github.io/bad-habits/',
-            '💡',
-            'A calm look at everyday habits worth rethinking — scrolling, poor sleep, fast food, sugary drinks, smoking & shisha, and more — why they quietly harm us, and simple swaps to put in their place. EN/عربي.',
-            '#f43f5e',
-          ],
-          [
-            'Enough',
-            'https://edriso.github.io/enough/',
-            '◐',
-            'Use your phone on purpose, with a daily budget and a breathe-first pause before the apps that pull you in.',
-            '#5fa3c0',
-          ],
-          [
-            'Sleep On It',
-            'https://edriso.github.io/sleep-on-it/',
-            '🛒',
-            'Put a 24-hour hold on impulse buys, then come back tomorrow and see if you still really want it.',
-            '#4f9d8c',
-          ],
-          [
-            'Essentials',
-            'https://edriso.github.io/essentials/',
-            '✦',
-            'Keep only the few things that truly matter today, with a hard cap of three so the list never runs away.',
-            '#6f8a72',
-          ],
+          {
+            n: 'Rethink · أعِد التفكير',
+            u: 'https://edriso.github.io/bad-habits/',
+            i: '💡',
+            en: 'A calm look at everyday habits worth rethinking — scrolling, poor sleep, fast food, sugary drinks, smoking & shisha, and more — why they quietly harm us, and simple swaps to put in their place. EN/عربي.',
+            ar: 'نظرة هادئة على عادات يومية تستحق إعادة التفكير: التمرير بلا هدف، قلة النوم، الوجبات السريعة، المشروبات السكرية، التدخين والشيشة، وأكثر — لماذا تؤذينا بهدوء، وبدائل بسيطة نضعها مكانها.',
+            c: '#f43f5e',
+          },
+          {
+            n: 'Enough',
+            u: 'https://edriso.github.io/enough/',
+            i: '◐',
+            en: 'Use your phone on purpose, with a daily budget and a breathe-first pause before the apps that pull you in.',
+            ar: 'استخدم هاتفك بوعي، بميزانية يومية ووقفة تنفّس قبل التطبيقات التي تجذبك.',
+            c: '#5fa3c0',
+          },
+          {
+            n: 'Sleep On It',
+            u: 'https://edriso.github.io/sleep-on-it/',
+            i: '🛒',
+            en: 'Put a 24-hour hold on impulse buys, then come back tomorrow and see if you still really want it.',
+            ar: 'ضع مشترياتك الاندفاعية على الانتظار أربعًا وعشرين ساعة، ثم عد غدًا لترى إن كنت ما زلت تريدها فعلًا.',
+            c: '#4f9d8c',
+          },
+          {
+            n: 'Essentials',
+            u: 'https://edriso.github.io/essentials/',
+            i: '✦',
+            en: 'Keep only the few things that truly matter today, with a hard cap of three so the list never runs away.',
+            ar: 'احتفظ فقط بالأشياء القليلة المهمة فعلًا اليوم، بحدّ أقصى ثابت وهو ثلاثة، فلا تخرج القائمة عن السيطرة أبدًا.',
+            c: '#6f8a72',
+          },
         ],
         learning: [
-          [
-            'MaiTalki',
-            'https://edriso.github.io/maitalki/',
-            '💬',
-            'Turn personal English lessons into short daily drills for clearer rhythm, concise answers, and customer-first sales conversations.',
-            '#c8ef54',
-          ],
-          [
-            'Well Said',
-            'https://edriso.github.io/well-said/',
-            '🗣️',
-            'A calm daily speaking gym: listen, notice the rhythm, repeat, shadow, and perform one useful English conversation.',
-            '#d6ff66',
-          ],
-          [
-            'How to Learn',
-            'https://edriso.github.io/how-to-learn/',
-            '🎓',
-            'The science of studying well: active recall, spaced repetition, focus, and habits, with hands-on tools to practice each one.',
-            '#8b5cf6',
-          ],
-          [
-            'Number Ninjas',
-            'https://edriso.github.io/number-ninjas/',
-            '🥷',
-            'Playful math quizzes for kids, full of sounds, stars, and a happy little celebration for every perfect score. EN/عربي.',
-            '#6f8ae0',
-          ],
-          [
-            'Name It',
-            'https://edriso.github.io/name-it/',
-            '🔤',
-            'A quick English vocabulary quiz: see the picture, then name the thing.',
-            '#58e08c',
-          ],
-          [
-            'Type-Down',
-            'https://edriso.github.io/type-down/',
-            '⌨️',
-            'Keyboard-first Markdown typing practice to build speed and muscle memory.',
-            '#9a8fc0',
-          ],
-          [
-            'write.md',
-            'https://edriso.github.io/write.md/',
-            '✍️',
-            'Learn Markdown and technical writing with interactive examples and a live preview editor.',
-            '#c98a5c',
-          ],
+          {
+            n: 'MaiTalki',
+            u: 'https://edriso.github.io/maitalki/',
+            i: '💬',
+            en: 'Turn personal English lessons into short daily drills for clearer rhythm, concise answers, and customer-first sales conversations.',
+            ar: 'حوّل دروس الإنجليزية الشخصية إلى تدريبات يومية قصيرة لإيقاع أوضح، وإجابات موجزة، ومحادثات بيع تضع العميل أولًا.',
+            c: '#c8ef54',
+          },
+          {
+            n: 'Well Said',
+            u: 'https://edriso.github.io/well-said/',
+            i: '🗣️',
+            en: 'A calm daily speaking gym: listen, notice the rhythm, repeat, shadow, and perform one useful English conversation.',
+            ar: 'صالة تمرين يومية هادئة للتحدث: استمع، لاحظ الإيقاع، كرّر، قلّد، وأدِّ محادثة إنجليزية مفيدة واحدة.',
+            c: '#d6ff66',
+          },
+          {
+            n: 'How to Learn',
+            u: 'https://edriso.github.io/how-to-learn/',
+            i: '🎓',
+            en: 'The science of studying well: active recall, spaced repetition, focus, and habits, with hands-on tools to practice each one.',
+            ar: 'علم المذاكرة الجيدة: الاسترجاع الفعّال، والتكرار المتباعد، والتركيز، والعادات، مع أدوات عملية لتطبيق كل منها.',
+            c: '#8b5cf6',
+          },
+          {
+            n: 'Number Ninjas',
+            u: 'https://edriso.github.io/number-ninjas/',
+            i: '🥷',
+            en: 'Playful math quizzes for kids, full of sounds, stars, and a happy little celebration for every perfect score. EN/عربي.',
+            ar: 'اختبارات رياضيات مرحة للأطفال، مليئة بالأصوات والنجوم واحتفال صغير وسعيد عند كل علامة كاملة.',
+            c: '#6f8ae0',
+          },
+          {
+            n: 'Name It',
+            u: 'https://edriso.github.io/name-it/',
+            i: '🔤',
+            en: 'A quick English vocabulary quiz: see the picture, then name the thing.',
+            ar: 'اختبار سريع لمفردات الإنجليزية: انظر إلى الصورة، ثم سمِّ الشيء.',
+            c: '#58e08c',
+          },
+          {
+            n: 'Type-Down',
+            u: 'https://edriso.github.io/type-down/',
+            i: '⌨️',
+            en: 'Keyboard-first Markdown typing practice to build speed and muscle memory.',
+            ar: 'تدريب على كتابة Markdown يركّز على لوحة المفاتيح لبناء السرعة والذاكرة العضلية.',
+            c: '#9a8fc0',
+          },
+          {
+            n: 'write.md',
+            u: 'https://edriso.github.io/write.md/',
+            i: '✍️',
+            en: 'Learn Markdown and technical writing with interactive examples and a live preview editor.',
+            ar: 'تعلّم Markdown والكتابة التقنية بأمثلة تفاعلية ومحرر بمعاينة مباشرة.',
+            c: '#c98a5c',
+          },
         ],
       };
 
@@ -658,18 +699,20 @@
           (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c],
         );
 
-      for (const [key, list] of Object.entries(APPS)) {
-        const el = document.getElementById('g-' + key);
-        if (!el) continue;
-        el.innerHTML = list
-          .map(
-            ([name, url, icon, desc, c]) =>
-              `<a class="card" dir="ltr" style="--c:${esc(c)}" href="${esc(url)}" target="_blank" rel="noopener">
-             <div class="ct"><span class="dot" style="color:${esc(c)}">${esc(icon)}</span><span class="name">${esc(name)}</span></div>
-             <div class="desc">${esc(desc)}</div>
+      function renderCards(lang) {
+        for (const [key, list] of Object.entries(APPS)) {
+          const el = document.getElementById('g-' + key);
+          if (!el) continue;
+          el.innerHTML = list
+            .map(
+              (app) =>
+                `<a class="card" style="--c:${esc(app.c)}" href="${esc(app.u)}" target="_blank" rel="noopener">
+             <div class="ct"><span class="dot" style="color:${esc(app.c)}">${esc(app.i)}</span><span class="name" dir="auto">${esc(app.n)}</span></div>
+             <div class="desc">${esc(lang === 'ar' ? app.ar : app.en)}</div>
            </a>`,
-          )
-          .join('');
+            )
+            .join('');
+        }
       }
 
       // Theme, language and back-to-top controls.
@@ -749,6 +792,7 @@
         }
         document.getElementById('footer-text').innerHTML = t.footerText;
         document.getElementById('footer-link').textContent = t.footerLink;
+        renderCards(lang);
         btnLang.textContent = t.langLabel;
         btnLang.title = t.langSwitch;
         btnLang.setAttribute('aria-label', t.langSwitch);

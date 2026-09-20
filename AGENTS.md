@@ -7,11 +7,12 @@ It is a directory page, not an app in itself: keep it boring, fast, and dependen
 
 - No build step, no framework, no package.json. One HTML file with inline `<style>` and
   `<script>`. Keep it that way; do not introduce a bundler or a JS framework for this page.
-- The `APPS` object holds every card: `[name, liveURL, icon, description, accentColor]`,
-  grouped by category. Each category also needs a matching `.grid` element with a
-  `g-<key>` id and a `t-<key>`/`d-<key>` heading pair in the markup.
-- Keep descriptions short (one sentence, two at most) and always link to the app's live
-  URL, not a repo or a draft.
+- The `APPS` object holds every card as `{ n, u, i, en, ar, c }` (name, live URL, icon,
+  English description, Arabic description, accent color), grouped by category. Each
+  category also needs a matching `.grid` element with a `g-<key>` id and a
+  `t-<key>`/`d-<key>` heading pair in the markup.
+- Keep descriptions short (one sentence, two at most) in both languages, and always link
+  to the app's live URL, not a repo or a draft.
 
 ## Theme and language
 
@@ -21,13 +22,15 @@ It is a directory page, not an app in itself: keep it boring, fast, and dependen
 - English is the default language; Arabic is Modern Standard Arabic, simple and warm,
   never stiff or overly formal. All translatable chrome text lives in the `STR` object;
   every new string needs both an `en` and an `ar` entry, and the element it fills needs a
-  stable `id` for `applyLang()` to update.
-- Card names and descriptions are not translated by the language toggle — they are each
-  app's own listing, already written in whatever language(s) that app uses, and several
-  already show their own bilingual name. Cards render with `dir="ltr"` so mixed
-  English/Arabic text keeps its natural reading order regardless of the page's direction.
-  Do not remove that isolation; without it, mixed-direction sentences reorder oddly
-  inside an RTL page.
+  stable `id` for `applyLang()` to update. A new or edited app needs both `en` and `ar`
+  in its `APPS` entry — never leave one language behind.
+- `renderCards(lang)` rebuilds every card's description for the active language and runs
+  on load and on every language toggle; don't reintroduce a one-time render that only
+  ever shows English. Card *names* stay as authored — not translated — and render with
+  `dir="auto"` so each name keeps its own natural order (several are already bilingual,
+  e.g. `Maeen · مَعين`) regardless of the page's direction. Do not force `dir="ltr"` on
+  the whole card again: once descriptions are bilingual, the card should follow the
+  page's own direction like everything else.
 - Both toggles persist to `localStorage` (`apps-theme`, `apps-lang`). The inline script at
   the top of `<head>` applies the stored choice before the stylesheet paints — keep that
   script tiny and synchronous so there is no flash of the wrong theme or direction.

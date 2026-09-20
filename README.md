@@ -10,13 +10,13 @@ Previously published as Tiny Apps. The [old collection address](https://edriso.g
 
 ## Editing
 
-This is a single static `index.html` with no build step. The cards are defined in the inline `APPS` object, grouped by category. Each entry contains a name, live URL, icon, description, and accent color:
+This is a single static `index.html` with no build step. The cards are defined in the inline `APPS` object, grouped by category. Each entry is an object with a name, live URL, icon, an English and an Arabic description, and an accent color:
 
 ```js
-['App name', 'https://example.com/', '◉', 'A short description.', '#8a93d8']
+{ n: 'App name', u: 'https://example.com/', i: '◉', en: 'A short description.', ar: 'وصف قصير.', c: '#8a93d8' }
 ```
 
-Add an entry to an existing group, or add a new group key and matching `.grid` element in the page. Keep descriptions short and make sure every URL points to the app’s live site. Card names and descriptions stay in the language they were authored in (mostly English, some already bilingual); they render with `dir="ltr"` on the card so mixed English/Arabic text keeps its natural order regardless of the page's active language.
+Add an entry to an existing group, or add a new group key and matching `.grid` element in the page. Keep descriptions short in both languages, write the Arabic in simple, warm Modern Standard Arabic, and make sure every URL points to the app’s live site. Card names are not translated — they stay as authored (mostly English, some already bilingual, e.g. `Maeen · مَعين`) — and render with `dir="auto"` so each name keeps its own authored order regardless of the page's active language; only the description swaps between `en` and `ar`.
 
 Adding a new group also means adding a `t-<key>`/`d-<key>` heading pair in the markup and a matching entry in both `STR.en.groups` and `STR.ar.groups` in the script, so the group title translates too.
 
@@ -25,7 +25,7 @@ Adding a new group also means adding a `t-<key>`/`d-<key>` heading pair in the m
 Three controls sit fixed in the corners: a language toggle and a theme toggle top-right, and a back-to-top button that appears bottom-right once you scroll. Both toggles remember the visitor's choice in `localStorage` (`apps-theme`, `apps-lang`) and a small inline script in `<head>` applies the stored choice before the stylesheet paints, so returning visitors never see a flash of the wrong theme or direction.
 
 - **Theme**: light/dark only, no "system" option. CSS variables under `:root[data-theme='light']` override the dark defaults.
-- **Language**: English by default; the toggle switches the page's own copy (heading, group titles, footer, control labels) to Modern Standard Arabic and flips `dir`/`lang` to `rtl`/`ar`, using Cairo instead of Fraunces/Hanken Grotesk. It does not translate each app's own name or description — those belong to each app's own listing, and several already show their own bilingual name (e.g. `Maeen · مَعين`). All translatable page copy lives in the `STR` object in the script; add a key there (both `en` and `ar`) for any new piece of chrome text, and give its element a stable `id` for `applyLang()` to update.
+- **Language**: English by default; the toggle switches the page's own copy (heading, group titles, footer, control labels) *and* every card's description to Modern Standard Arabic, and flips `dir`/`lang` to `rtl`/`ar`, using Cairo instead of Fraunces/Hanken Grotesk. `renderCards(lang)` rebuilds the grids with the right-language description each time the toggle fires. All translatable page copy lives in the `STR` object in the script; add a key there (both `en` and `ar`) for any new piece of chrome text, and give its element a stable `id` for `applyLang()` to update.
 
 ## Deploy
 
