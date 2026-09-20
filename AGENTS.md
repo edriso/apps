@@ -19,6 +19,13 @@ It is a directory page, not an app in itself: keep it boring, fast, and dependen
 - Three controls only: a language toggle, a theme toggle (light/dark, no "system"
   option), and a back-to-top button that appears after scrolling. Do not add more
   persistent chrome than that.
+- The `.controls` toolbar is fixed to the page, not to reading order: it keeps
+  `direction: ltr` so the language and theme buttons stay in the same physical spot
+  when the language toggle flips `<html>` to `dir="rtl"`. Without it, the flex row
+  reverses and the two buttons swap places on every language toggle — jarring for a
+  persistent, always-in-the-same-corner control. Any other multi-child persistent
+  control added later needs the same treatment; content elements (card rows, group
+  headings) are expected to flip with direction and should not get this override.
 - English is the default language; Arabic is Modern Standard Arabic, simple and warm,
   never stiff or overly formal. All translatable chrome text lives in the `STR` object;
   every new string needs both an `en` and an `ar` entry, and the element it fills needs a
