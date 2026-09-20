@@ -3,6 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <script>
+      // Applied before the stylesheet paints, so a returning visitor never sees a flash
+      // of the wrong theme or direction.
+      (function () {
+        var root = document.documentElement;
+        var theme = localStorage.getItem('apps-theme');
+        if (theme === 'light') root.dataset.theme = 'light';
+        var lang = localStorage.getItem('apps-lang');
+        if (lang === 'ar') {
+          root.lang = 'ar';
+          root.dir = 'rtl';
+          root.dataset.lang = 'ar';
+        }
+      })();
+    </script>
     <title>Apps</title>
     <meta
       name="description"
@@ -21,7 +36,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=block"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=block"
       rel="stylesheet"
     />
     <style>
@@ -37,6 +52,20 @@
         --accent: #8a93d8;
         --serif: 'Fraunces', Georgia, serif;
         --ui: 'Hanken Grotesk', system-ui, sans-serif;
+        --ar: 'Cairo', system-ui, sans-serif;
+        color-scheme: dark;
+      }
+      :root[data-theme='light'] {
+        --bg: #f8f8fb;
+        --bg2: #eef0f7;
+        --surface: #ffffff;
+        --surface2: #f0f1f7;
+        --line: rgba(20, 22, 40, 0.1);
+        --ink: #1b1c24;
+        --dim: #55596e;
+        --faint: #85899e;
+        --accent: #5b62c4;
+        color-scheme: light;
       }
       * {
         box-sizing: border-box;
@@ -52,6 +81,21 @@
         font-family: var(--ui);
         min-height: 100vh;
         -webkit-font-smoothing: antialiased;
+        transition:
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+      :root[data-lang='ar'] body {
+        font-family: var(--ar);
+      }
+      :root[data-lang='ar'] h1,
+      :root[data-lang='ar'] .group-h h2,
+      :root[data-lang='ar'] .name {
+        font-family: var(--ar);
+      }
+      :root[data-lang='ar'] h1 em {
+        font-style: normal;
+        font-weight: 700;
       }
       .wrap {
         max-width: 900px;
@@ -177,64 +221,126 @@
         font-size: 13px;
         line-height: 1.6;
       }
+      .controls {
+        position: fixed;
+        top: calc(16px + env(safe-area-inset-top, 0px));
+        right: calc(16px + env(safe-area-inset-right, 0px));
+        display: flex;
+        gap: 8px;
+        z-index: 50;
+      }
+      .fab {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        color: var(--ink);
+        cursor: pointer;
+        font-family: var(--ui);
+        font-size: 15px;
+        line-height: 1;
+        padding: 0;
+        transition:
+          transform 0.14s ease,
+          background 0.2s ease,
+          border-color 0.2s ease,
+          opacity 0.2s ease,
+          visibility 0.2s ease;
+      }
+      .fab:hover {
+        background: var(--surface2);
+        transform: translateY(-2px);
+      }
+      .fab:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      #btn-top {
+        position: fixed;
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+        right: calc(16px + env(safe-area-inset-right, 0px));
+        z-index: 50;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(8px);
+      }
+      #btn-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
       @media (prefers-reduced-motion: reduce) {
-        a.card {
+        a.card,
+        .fab,
+        #btn-top,
+        body {
           transition: none;
         }
       }
     </style>
   </head>
   <body>
+    <div class="controls">
+      <button id="btn-lang" class="fab" type="button"></button>
+      <button id="btn-theme" class="fab" type="button"></button>
+    </div>
+    <button id="btn-top" class="fab" type="button">↑</button>
+
     <div class="wrap">
       <header>
-        <div class="eyebrow">Apps for everyday life</div>
-        <h1>Apps, <em>one job</em> each.</h1>
-        <p class="lede">
+        <div class="eyebrow" id="eyebrow">Apps for everyday life</div>
+        <h1 id="h1">Apps, <em>one job</em> each.</h1>
+        <p class="lede" id="lede">
           A family of tiny, single-purpose apps. Each one quietly fixes a single modern friction,
           gently and without shame. Minimal by design. Pick one and open it.
         </p>
       </header>
 
       <div class="group">
-        <div class="group-h"><h2>Faith &amp; gratitude</h2><span>tend to the soul</span></div>
+        <div class="group-h"><h2 id="t-faith">Faith &amp; gratitude</h2><span id="d-faith">tend to the soul</span></div>
         <div class="grid" id="g-faith"></div>
       </div>
       <div class="group">
         <div class="group-h">
-          <h2>Habits &amp; restraint</h2>
-          <span>gentle course-corrections</span>
+          <h2 id="t-habit">Habits &amp; restraint</h2>
+          <span id="d-habit">gentle course-corrections</span>
         </div>
         <div class="grid" id="g-habit"></div>
       </div>
       <div class="group">
-        <div class="group-h"><h2>Focus &amp; attention</h2><span>do the deep work</span></div>
+        <div class="group-h"><h2 id="t-focus">Focus &amp; attention</h2><span id="d-focus">do the deep work</span></div>
         <div class="grid" id="g-focus"></div>
       </div>
       <div class="group">
-        <div class="group-h"><h2>Calm &amp; mind</h2><span>quiet the noise</span></div>
+        <div class="group-h"><h2 id="t-calm">Calm &amp; mind</h2><span id="d-calm">quiet the noise</span></div>
         <div class="grid" id="g-calm"></div>
       </div>
       <div class="group">
-        <div class="group-h"><h2>Body &amp; health</h2><span>look after yourself</span></div>
+        <div class="group-h"><h2 id="t-body">Body &amp; health</h2><span id="d-body">look after yourself</span></div>
         <div class="grid" id="g-body"></div>
       </div>
       <div class="group">
-        <div class="group-h"><h2>Evening &amp; sleep</h2><span>end the day well</span></div>
+        <div class="group-h"><h2 id="t-evening">Evening &amp; sleep</h2><span id="d-evening">end the day well</span></div>
         <div class="grid" id="g-evening"></div>
       </div>
       <div class="group">
-        <div class="group-h"><h2>Family &amp; connection</h2><span>be with your people</span></div>
+        <div class="group-h"><h2 id="t-family">Family &amp; connection</h2><span id="d-family">be with your people</span></div>
         <div class="grid" id="g-family"></div>
       </div>
       <div class="group">
-        <div class="group-h"><h2>Learning &amp; play</h2><span>grow a skill</span></div>
+        <div class="group-h"><h2 id="t-learning">Learning &amp; play</h2><span id="d-learning">grow a skill</span></div>
         <div class="grid" id="g-learning"></div>
       </div>
 
       <footer>
-        Each app runs on its own, keeps everything on your device, and works offline.<br />
-        Built to be calm, minimal, and science-leaning, never a guilt machine.<br />
-        <a href="https://edriso.github.io/hub/" style="color:#9ea3b8">Back to the hub</a>
+        <p id="footer-text">
+          Each app runs on its own, keeps everything on your device, and works offline.<br />
+          Built to be calm, minimal, and science-leaning, never a guilt machine.
+        </p>
+        <a id="footer-link" href="https://edriso.github.io/hub/" style="color:#9ea3b8">Back to the hub</a>
       </footer>
     </div>
 
@@ -558,13 +664,138 @@
         el.innerHTML = list
           .map(
             ([name, url, icon, desc, c]) =>
-              `<a class="card" style="--c:${esc(c)}" href="${esc(url)}" target="_blank" rel="noopener">
+              `<a class="card" dir="ltr" style="--c:${esc(c)}" href="${esc(url)}" target="_blank" rel="noopener">
              <div class="ct"><span class="dot" style="color:${esc(c)}">${esc(icon)}</span><span class="name">${esc(name)}</span></div>
              <div class="desc">${esc(desc)}</div>
            </a>`,
           )
           .join('');
       }
+
+      // Theme, language and back-to-top controls.
+      const STR = {
+        en: {
+          docTitle: 'Apps',
+          docDesc:
+            'A family of tiny, single-purpose apps. Each one quietly fixes a single modern friction, gently and without shame.',
+          eyebrow: 'Apps for everyday life',
+          h1: 'Apps, <em>one job</em> each.',
+          lede: 'A family of tiny, single-purpose apps. Each one quietly fixes a single modern friction, gently and without shame. Minimal by design. Pick one and open it.',
+          groups: {
+            faith: ['Faith & gratitude', 'tend to the soul'],
+            habit: ['Habits & restraint', 'gentle course-corrections'],
+            focus: ['Focus & attention', 'do the deep work'],
+            calm: ['Calm & mind', 'quiet the noise'],
+            body: ['Body & health', 'look after yourself'],
+            evening: ['Evening & sleep', 'end the day well'],
+            family: ['Family & connection', 'be with your people'],
+            learning: ['Learning & play', 'grow a skill'],
+          },
+          footerText:
+            'Each app runs on its own, keeps everything on your device, and works offline.<br />Built to be calm, minimal, and science-leaning, never a guilt machine.',
+          footerLink: 'Back to the hub',
+          top: 'Back to top',
+          themeToLight: 'Switch to light theme',
+          themeToDark: 'Switch to dark theme',
+          langSwitch: 'Switch to Arabic',
+          langLabel: 'AR',
+        },
+        ar: {
+          docTitle: 'تطبيقات',
+          docDesc:
+            'مجموعة من التطبيقات الصغيرة، لكل واحد منها غرض واحد. يعالج كل تطبيق بهدوء مشكلة صغيرة من مشكلات حياتنا العصرية، برفق ودون خجل.',
+          eyebrow: 'تطبيقات لحياتك اليومية',
+          h1: 'تطبيقات، <em>مهمة واحدة</em> لكل تطبيق.',
+          lede: 'مجموعة من التطبيقات الصغيرة، لكل واحد منها غرض واحد فقط. كل تطبيق يعالج بهدوء مشكلة صغيرة من مشكلات حياتنا العصرية، برفق ودون خجل. بسيطة في تصميمها. اختر تطبيقًا وابدأ.',
+          groups: {
+            faith: ['الإيمان والامتنان', 'لرعاية الروح'],
+            habit: ['العادات وضبط النفس', 'تصحيحات لطيفة لمسارك'],
+            focus: ['التركيز والانتباه', 'لإنجاز عمل عميق'],
+            calm: ['الهدوء والعقل', 'لتهدئة الضجيج'],
+            body: ['الجسد والصحة', 'للعناية بنفسك'],
+            evening: ['المساء والنوم', 'لختام يوم جميل'],
+            family: ['العائلة والتواصل', 'لتكون مع أحبّتك'],
+            learning: ['التعلّم واللعب', 'لتنمية مهارة جديدة'],
+          },
+          footerText:
+            'كل تطبيق يعمل بمفرده، ويحتفظ بكل بياناته على جهازك، ويعمل من دون إنترنت.<br />صُمّمت لتكون هادئة وبسيطة، ومبنية على العلم، لا آلة لتأنيب الضمير.',
+          footerLink: 'العودة إلى المركز',
+          top: 'العودة إلى الأعلى',
+          themeToLight: 'التبديل إلى الوضع الفاتح',
+          themeToDark: 'التبديل إلى الوضع الداكن',
+          langSwitch: 'التبديل إلى الإنجليزية',
+          langLabel: 'EN',
+        },
+      };
+
+      const root = document.documentElement;
+      const btnLang = document.getElementById('btn-lang');
+      const btnTheme = document.getElementById('btn-theme');
+      const btnTop = document.getElementById('btn-top');
+
+      function applyLang(lang) {
+        const t = STR[lang];
+        root.lang = lang;
+        root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        root.dataset.lang = lang;
+        document.title = t.docTitle;
+        document.querySelector('meta[name="description"]').setAttribute('content', t.docDesc);
+        document.getElementById('eyebrow').textContent = t.eyebrow;
+        document.getElementById('h1').innerHTML = t.h1;
+        document.getElementById('lede').textContent = t.lede;
+        for (const [key, [title, sub]] of Object.entries(t.groups)) {
+          document.getElementById('t-' + key).textContent = title;
+          document.getElementById('d-' + key).textContent = sub;
+        }
+        document.getElementById('footer-text').innerHTML = t.footerText;
+        document.getElementById('footer-link').textContent = t.footerLink;
+        btnLang.textContent = t.langLabel;
+        btnLang.title = t.langSwitch;
+        btnLang.setAttribute('aria-label', t.langSwitch);
+        btnLang.setAttribute('aria-pressed', String(lang === 'ar'));
+        btnTop.title = t.top;
+        btnTop.setAttribute('aria-label', t.top);
+        applyThemeLabels(root.dataset.theme === 'light');
+      }
+
+      function applyThemeLabels(isLight) {
+        const t = STR[root.dataset.lang === 'ar' ? 'ar' : 'en'];
+        const label = isLight ? t.themeToDark : t.themeToLight;
+        btnTheme.textContent = isLight ? '☀' : '☾';
+        btnTheme.title = label;
+        btnTheme.setAttribute('aria-label', label);
+        btnTheme.setAttribute('aria-pressed', String(isLight));
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute('content', isLight ? '#f8f8fb' : '#13141a');
+      }
+
+      btnLang.addEventListener('click', () => {
+        const next = root.dataset.lang === 'ar' ? 'en' : 'ar';
+        localStorage.setItem('apps-lang', next);
+        applyLang(next);
+      });
+
+      btnTheme.addEventListener('click', () => {
+        const isLight = root.dataset.theme !== 'light';
+        root.dataset.theme = isLight ? 'light' : 'dark';
+        localStorage.setItem('apps-theme', isLight ? 'light' : 'dark');
+        applyThemeLabels(isLight);
+      });
+
+      btnTop.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+        });
+      });
+      addEventListener(
+        'scroll',
+        () => btnTop.classList.toggle('show', window.scrollY > 400),
+        { passive: true },
+      );
+
+      applyLang(root.dataset.lang === 'ar' ? 'ar' : 'en');
     </script>
   </body>
 </html>
