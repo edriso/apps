@@ -9,7 +9,7 @@
       (function () {
         var root = document.documentElement;
         var theme = localStorage.getItem('apps-theme');
-        if (theme === 'light') root.dataset.theme = 'light';
+        if (theme === 'dark') root.dataset.theme = 'dark';
         var lang = localStorage.getItem('apps-lang');
         if (lang === 'ar') {
           root.lang = 'ar';
@@ -23,7 +23,7 @@
       name="description"
       content="A family of tiny, single-purpose apps. Each one quietly fixes a single modern friction, gently and without shame."
     />
-    <meta name="theme-color" content="#13141a" />
+    <meta name="theme-color" content="#f8f8fb" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <meta property="og:title" content="Apps" />
     <meta
@@ -41,21 +41,6 @@
     />
     <style>
       :root {
-        --bg: #13141a;
-        --bg2: #0d0e12;
-        --surface: #1c1d25;
-        --surface2: #262833;
-        --line: rgba(225, 228, 245, 0.1);
-        --ink: #ecedf3;
-        --dim: #9ea3b8;
-        --faint: #646980;
-        --accent: #8a93d8;
-        --serif: 'Fraunces', Georgia, serif;
-        --ui: 'Hanken Grotesk', system-ui, sans-serif;
-        --ar: 'Cairo', system-ui, sans-serif;
-        color-scheme: dark;
-      }
-      :root[data-theme='light'] {
         --bg: #f8f8fb;
         --bg2: #eef0f7;
         --surface: #ffffff;
@@ -65,7 +50,22 @@
         --dim: #55596e;
         --faint: #85899e;
         --accent: #5b62c4;
+        --serif: 'Fraunces', Georgia, serif;
+        --ui: 'Hanken Grotesk', system-ui, sans-serif;
+        --ar: 'Cairo', system-ui, sans-serif;
         color-scheme: light;
+      }
+      :root[data-theme='dark'] {
+        --bg: #13141a;
+        --bg2: #0d0e12;
+        --surface: #1c1d25;
+        --surface2: #262833;
+        --line: rgba(225, 228, 245, 0.1);
+        --ink: #ecedf3;
+        --dim: #9ea3b8;
+        --faint: #646980;
+        --accent: #8a93d8;
+        color-scheme: dark;
       }
       * {
         box-sizing: border-box;
@@ -800,7 +800,7 @@
         btnLang.setAttribute('aria-pressed', String(lang === 'ar'));
         btnTop.title = t.top;
         btnTop.setAttribute('aria-label', t.top);
-        applyThemeLabels(root.dataset.theme === 'light');
+        applyThemeLabels(root.dataset.theme !== 'dark');
       }
 
       function applyThemeLabels(isLight) {
@@ -822,10 +822,10 @@
       });
 
       btnTheme.addEventListener('click', () => {
-        const isLight = root.dataset.theme !== 'light';
-        root.dataset.theme = isLight ? 'light' : 'dark';
-        localStorage.setItem('apps-theme', isLight ? 'light' : 'dark');
-        applyThemeLabels(isLight);
+        const goingLight = root.dataset.theme === 'dark';
+        root.dataset.theme = goingLight ? 'light' : 'dark';
+        localStorage.setItem('apps-theme', goingLight ? 'light' : 'dark');
+        applyThemeLabels(goingLight);
       });
 
       btnTop.addEventListener('click', () => {

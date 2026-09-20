@@ -24,7 +24,7 @@ Adding a new group also means adding a `t-<key>`/`d-<key>` heading pair in the m
 
 Three controls sit fixed in the corners: a language toggle and a theme toggle top-right, and a back-to-top button that appears bottom-right once you scroll. Both toggles remember the visitor's choice in `localStorage` (`apps-theme`, `apps-lang`) and a small inline script in `<head>` applies the stored choice before the stylesheet paints, so returning visitors never see a flash of the wrong theme or direction.
 
-- **Theme**: light/dark only, no "system" option. CSS variables under `:root[data-theme='light']` override the dark defaults.
+- **Theme**: light by default, dark as the toggle; no "system" option. CSS variables under `:root[data-theme='dark']` override the light defaults.
 - **Language**: English by default; the toggle switches the page's own copy (heading, group titles, footer, control labels) *and* every card's description to Modern Standard Arabic, and flips `dir`/`lang` to `rtl`/`ar`, using Cairo instead of Fraunces/Hanken Grotesk. `renderCards(lang)` rebuilds the grids with the right-language description each time the toggle fires. All translatable page copy lives in the `STR` object in the script; add a key there (both `en` and `ar`) for any new piece of chrome text, and give its element a stable `id` for `applyLang()` to update.
 
 ## Deploy
